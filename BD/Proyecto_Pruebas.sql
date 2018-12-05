@@ -7,18 +7,12 @@ CREATE TABLE PERSONA(
   IDPersona INT NOT NULL AUTO_INCREMENT,
   Nombres VARCHAR(50) NOT NULL,
   Apellidos VARCHAR(50) NOT NULL,
-  Email VARCHAR(100) NOT NULL,
-  DUI CHAR(10) NOT NULL, ##puede sevir como un ID individual para cada persona
-  NIT CHAR(18) NOT NULL,
-  IDTelefonoCelular INT NULL,
-  IDTelefonoCasa INT NULL,
+  Email VARCHAR(100) NULL,
+  DUI CHAR(10) NULL, ##puede sevir como un ID individual para cada persona
+  NIT CHAR(18) NULL,
+  TelefonoCelular CHAR (8) NULL,
+  TelefonoCasa CHAR (8) NULL,
   UNIQUE(IDPersona)
-);
-
-CREATE TABLE TELEFONO(
-  IDTelefono INT NOT NULL AUTO_INCREMENT,
-  Telefono CHAR(8) NOT NULL,
-  UNIQUE (IDTelefono)
 );
 
 CREATE TABLE USUARIO(
@@ -36,7 +30,7 @@ CREATE TABLE SUCURSAL(
   IDSucursal INT NOT NULL AUTO_INCREMENT,
   NombreSucursal VARCHAR(50) NOT NULL,
 ##  IDMunicipio INT NOT NULL,
-  IDTelefono INT NULL,
+  Telefono INT NOT NULL,
   Direccion VARCHAR(50),
   UNIQUE (IDSucursal)
 );
@@ -45,7 +39,7 @@ CREATE TABLE CLIENTE(
   IDCliente INT NOT NULL AUTO_INCREMENT,
   IDClienteU INT NOT NULL,
   IDPersona INT NOT NULL,
-  IDEmpresa INT NULL,
+  NITEmpresa CHAR (18) NULL,
   IDFactura VARCHAR(200) NOT NULL,
   UNIQUE(IDFactura),
   UNIQUE(IDCliente)
@@ -93,7 +87,7 @@ CREATE TABLE PRODUCTOXPROVEEDOR(
 #Hay proveedores independientes?
 CREATE TABLE PROVEEDOR(
   IDProveedor INT NOT NULL AUTO_INCREMENT,
-  IDEmpresa INT NULL,
+  IDNitEmpresa INT NOT NULL,
   IDPersona INT NOT NULL,
   IDProducto INT NOT NULL,
   UNIQUE(IDProveedor)
@@ -127,16 +121,14 @@ CREATE TABLE COMPRA(
 ##  Cantidad INT DEFAULT(0),
 ##  UNIQUE(IDProductoI)
 ##);
-CREATE TABLE EMPRESA(
-  IDEmpresa INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE NITEmpresa(
+  IDNITEmpresa INT NOT NULL AUTO_INCREMENT,
   Nombre VARCHAR(50) NOT NULL,
   NIT CHAR (18) NOT NULL,
-  Direccion VARCHAR(150)NULL,
-  IDTelefono INT NOT NULL,
   NumeroContribuyente VARCHAR(150) NOT NULL, ##ID PARA EL USUARIO
   UNIQUE(Nombre),
   UNIQUE(NumeroContribuyente),
-  UNIQUE(IDEmpresa)
+  UNIQUE(IDNITEmpresa)
 );
 
 CREATE TABLE INVENTARIO(
